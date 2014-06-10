@@ -1,4 +1,5 @@
-/* Global */
+/* Global
+ * ------------------------------------ */
 
 body {
 	font-family: 'Roboto', sans-serif;
@@ -50,7 +51,8 @@ left:0px;
 z-index:999;
 }
 
-/* Navigation */
+/* Navigation 
+ * ------------------------------------ */
 
 .menu {
 	position:fixed;
@@ -100,7 +102,8 @@ z-index:999;
 	background-color: #BD3B35;
 }
 
-/* Video */
+/* Video 
+ * ------------------------------------ */
 
 .videoback {
 	background-color: #333333;
@@ -190,7 +193,9 @@ z-index:999;
 
 }
 
-/* Featured In Logos */
+
+/* Featured In Logos 
+ * ------------------------------------ */
 
 .logos{
 	background-attachment: fixed;
@@ -242,7 +247,8 @@ z-index:999;
 	margin-top:30px;
 }
 
-/* Footer */
+/* Footer 
+ * ------------------------------------ */
 
 
 .foot{
