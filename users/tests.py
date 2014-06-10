@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from webapp.tests import TestViews
 from django.core.urlresolvers import reverse
 
@@ -11,7 +12,8 @@ class TestUsers(TestViews):
         self.data = {
             'name': 'John Smith',
             'position': 'Position',
-            'department': 'New York City Fire Department'
+            'department': 'New York City Fire Department',
+            'email': 'contact@johnsmith.com'
         }
 
     def test_signup(self):
@@ -24,7 +26,8 @@ class TestUsers(TestViews):
         count_initial = Guest.objects.count()
 
         # sends the post request with the data
-        response = self.post_ajax(reverse('signup'), self.data)
+        response = self.post_ajax(reverse('signup'), json.dumps(self.data), 
+                                  content_type="application/json")
         assert response['success']
 
         # Checks if a guest object was inserted
@@ -41,5 +44,6 @@ class TestUsers(TestViews):
             data[field] = ''
 
             # Sends the response and checks the NOT success
-            response = self.post_ajax(reverse('signup'), data)
+            response = self.post_ajax(reverse('signup'), json.dumps(data),
+                                      content_type="application/json")
             assert not response['success']

@@ -2,6 +2,15 @@
 {% load static %}
 
 
+{% block htmltag %}ng-app='fireStop'{% endblock %}
+
+
+{% block headscripts %}
+<script type='text/javascript'>
+    var SIGNUP_URL = '{% url "signup" %}';
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="menu">  
     <div class="container clearfix">
@@ -34,16 +43,16 @@
       <div class="modal-body">
           <p>Interested in piloting FireStop?</p>
           <div id="modal-input-group">
-              <input type="text" class="modal-input" name="firstName" placeholder="First Name">
-              <input type="text" class="modal-input" name="lastName" placeholder="Last Name">
-              <input type="email" class="modal-input" name="email" placeholder="sample@email.com">
-              <input type="text" class="modal-input" name="department" placeholder="Department">
-              <input type="number" class="modal-input" name="departmentSize" placeholder="Department Size">
+              <input ng-model='data.first_name' type="text" class="modal-input" name="firstName" placeholder="First Name">
+              <input ng-model='data.last_name' type="text" class="modal-input" name="lastName" placeholder="Last Name">
+              <input ng-model='data.email' type="email" class="modal-input" name="email" placeholder="sample@email.com">
+              <input ng-model='data.department' type="text" class="modal-input" name="department" placeholder="Department">
+              <input ng-model='data.departmentSize' type="number" class="modal-input" name="departmentSize" placeholder="Department Size">
 
-              <input type="checkbox" class="modal-input" name="hasData" placeholder="Department">
-              <input type="text" class="modal-input" name="cadSoftware" placeholder="Which CAD software do you use?">
+              <input ng-model='data.hasData' type="checkbox" class="modal-input" name="hasData" placeholder="Department">
+              <input ng-model='data.cadSoftware' type="text" class="modal-input" name="cadSoftware" placeholder="Which CAD software do you use?">
 
-              <input type="checkbox" class="modal-input" name="cadMessaging" placeholder="Department">
+              <input ng-model='data.cadMessaging' type="checkbox" class="modal-input" name="cadMessaging" placeholder="Department">
               <button id="submit-modal" class="submit-active">Let us know!</button>
           </div>
       </div>
@@ -51,7 +60,7 @@
 </div>
 
 
-<div id='signup_overlay'>
+<div id='signup_overlay' ng-controller='SignupController as signup'>
     <div class='container clearfix'>
         <h1>FireStop</h1>
 
@@ -60,30 +69,33 @@
             take your fire data from inspection all the way through to the fire ground.<br>
         </p>
 
-        <form class='header'>
-            <div>FireStop™ Signup</div>
+        <form name='signup' class='header' novalidate ng-submit='submit_signup()'>
             {% csrf_token %}
             <div class="content">
-                <input type="text" id="name" placeholder="Name" name="name" class="input name input-xlarge">
+                <input name='name' type='text' ng-model='data.name'  id="name" placeholder="Name"  class="input name input-xlarge" required />
             </div>
             <div class="content">
-                <input type="text" id="position" placeholder="Position" name="position" class="input name input-xlarge">
+                <input ng-model="data.position" type="text" id="position" placeholder="Position" name="position" class="input name input-xlarge" required>
             </div>
             <div class="content">
-                <input type="text" id="department" placeholder="Department" name="department" class="input name input-xlarge">
+                <input ng-model="data.department" type="text" id="department" placeholder="Department" name="department" class="input name input-xlarge" required>
             </div>
             <div class="content">
-                <input type="email" id="email" placeholder="Email" name="email" class="input name input-xlarge">
+                <input ng-model="data.email" type="email" id="email" placeholder="Email" name="email" class="input name input-xlarge" required>
             </div>
 
             <div class="control-group">
                 <div class="controls-login">
                     <div class="footer">
-                        <input type="submit" name="submit" value="Login" class="button">
+                        <input type="submit" name="submit" value="Signup" class="button">
                     </div>
                 </div>
             </div>
         </form>
+
+        <p>
+            <a class='pilogin_request' href=''>Interested in piloting FireStop? Let us know!</a>
+        </p>
     </div>
 </div>
 {% endblock %}
