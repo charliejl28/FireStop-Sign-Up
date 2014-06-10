@@ -1,0 +1,89 @@
+{% extends 'base/layout.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="menu">  
+    <div class="container clearfix">
+
+        <div id="logo" class="grid_2">
+            <a href="/"><img src="{% static "FireStop/images/logos/LB---Word.png" %}"></a>
+        </div>
+
+        <div id="nav" class="grid_10 omega">
+            <ul class="navigation">
+                <li><a href="/features">Features</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/login" id="modaltrigger">Log In</a></li>  
+                <li><a href="{% url "signup" %}" class="button_trial" id="decorative">Free Trial</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="overlay">
+  <div class="modal">
+      <div class="modal-header">
+          Firestop Demo
+          <button type="button" class="close-modal">×</button>
+      </div>
+
+      <div class="modal-body">
+          <p>Interested in piloting FireStop?</p>
+          <div id="modal-input-group">
+              <input type="text" class="modal-input" name="firstName" placeholder="First Name">
+              <input type="text" class="modal-input" name="lastName" placeholder="Last Name">
+              <input type="email" class="modal-input" name="email" placeholder="sample@email.com">
+              <input type="text" class="modal-input" name="department" placeholder="Department">
+              <input type="number" class="modal-input" name="departmentSize" placeholder="Department Size">
+
+              <input type="checkbox" class="modal-input" name="hasData" placeholder="Department">
+              <input type="text" class="modal-input" name="cadSoftware" placeholder="Which CAD software do you use?">
+
+              <input type="checkbox" class="modal-input" name="cadMessaging" placeholder="Department">
+              <button id="submit-modal" class="submit-active">Let us know!</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div id='signup_overlay'>
+    <div class='container clearfix'>
+        <h1>FireStop</h1>
+
+        <p>
+            The world's first end-to-end, cloud-based system that helps you <br>
+            take your fire data from inspection all the way through to the fire ground.<br>
+        </p>
+
+        <form class='header'>
+            <div>FireStop™ Signup</div>
+            {% csrf_token %}
+            <div class="content">
+                <input type="text" id="name" placeholder="Name" name="name" class="input name input-xlarge">
+            </div>
+            <div class="content">
+                <input type="text" id="position" placeholder="Position" name="position" class="input name input-xlarge">
+            </div>
+            <div class="content">
+                <input type="text" id="department" placeholder="Department" name="department" class="input name input-xlarge">
+            </div>
+            <div class="content">
+                <input type="email" id="email" placeholder="Email" name="email" class="input name input-xlarge">
+            </div>
+
+            <div class="control-group">
+                <div class="controls-login">
+                    <div class="footer">
+                        <input type="submit" name="submit" value="Login" class="button">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

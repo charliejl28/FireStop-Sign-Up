@@ -8,3 +8,4 @@ class Guest(models.Model):
     position = models.CharField(max_length=63, verbose_name=_(u'Position'))
     department = models.CharField(max_length=255,
                                   verbose_name=_(u'Department'))
+    email = models.EmailField()

@@ -7,6 +7,7 @@ from .models import Guest
 
 class SignupView(JSONResponseMixin, CreateView):
     model = Guest
+    template_name = 'users/signup.html'
 
     def form_valid(self, form):
         """
