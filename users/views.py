@@ -1,10 +1,26 @@
 # -*- coding: utf-8 -*-
 import json
+import logging
+import requests
 
+from django.views.generic.base import View
 from django.views.generic.edit import CreateView
 from webapp.views import JSONResponseMixin
 
 from .models import Guest
+
+
+URL_PROFILE = 'http://firestopapptest.appspot.com/api/profile'
+logger = logging.getLogger('project.verbose')
+
+
+class POSTPilot(JSONResponseMixin, View):
+    def post(self, request, *args, **kwargs):
+        data = self.request.body
+        headers = {'content-type': 'application/json'}
+        response = requests.post(URL_PROFILE, data=data,
+                                 headers=headers)
+        return self.json_response(json.loads(response.text))
 
 
 class SignupView(JSONResponseMixin, CreateView):
