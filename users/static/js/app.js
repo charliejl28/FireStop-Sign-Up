@@ -39,30 +39,41 @@ var modal = (function($) {
         $scope.data = {};
 
         $scope.submit_signup = function() {
-            $http.post(SIGNUP_URL, $scope.data)
-                 .success(function(data) {
-                     $scope.signup.$setPristine(true);
-                     $scope.data = {};
-                 })
-                 .error(function(data) {
-                     console.log('NOT Success');
-                 });
+            console.log('Is form valid?: %s', $scope.signup.$valid);
+            if($scope.signup.$valid) {
+                $http.post(SIGNUP_URL, $scope.data)
+                     .success(function(data) {
+                         $scope.signup.$setPristine(true);
+                         $scope.data = {};
+                         alert('Your data was stored, thanks by your interest in our app');
+                     })
+                     .error(function(data) {
+                         console.log('NOT Success');
+                     });
+            } else {
+                alert('The data entered is not valid')
+            }
         }
     }]);
 
     app.controller('PilotController', ['$scope', '$http', function($scope, $http) {
         $scope.data = {};
         $scope.submit_data = function() {
-            console.log('submit data: %o', $scope.data);
-            $http.post(PROFILE_URL, $scope.data)
-                 .success(function(data) {
-                     $scope.pilot.$setPristine(true);
-                     $scope.data = {};
-                     modal.close();
-                 })
-                 .error(function(data) {
-                     //console.log('error: %o', data)
-                 })
+            console.log('Is form valid?: %s', $scope.pilot.$valid);
+            if($scope.pilot.$valid) {
+                $http.post(PROFILE_URL, $scope.data)
+                     .success(function(data) {
+                         $scope.pilot.$setPristine(true);
+                         $scope.data = {};
+                         modal.close();
+                         alert('The data was post successfully');
+                     })
+                     .error(function(data) {
+                         //console.log('error: %o', data)
+                     })
+            } else {
+                alert('The data entered is not valid')
+            }
         }
     }]);
 })();

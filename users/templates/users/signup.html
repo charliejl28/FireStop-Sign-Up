@@ -44,17 +44,23 @@
       <div class="modal-body">
           <div id="modal-input-group" ng-controller='PilotController as pilot'>
               <form name='pilot' novalidate ng-submit='submit_data()'>
-                  <input ng-model='data.first_name' type="text" class="modal-input" name="firstName" placeholder="First Name">
-                  <input ng-model='data.last_name' type="text" class="modal-input" name="lastName" placeholder="Last Name">
-                  <input ng-model='data.email' type="email" class="modal-input" name="email" placeholder="sample@email.com">
-                  <input ng-model='data.department' type="text" class="modal-input" name="department" placeholder="Department">
-                  <input ng-model='data.departmentSize' type="number" class="modal-input" name="departmentSize" placeholder="Department Size" min='0'>
+                  <input required ng-model='data.first_name' type="text" class="modal-input" name="firstName" placeholder="First Name">
+                  <p ng-show="pilot.firstName.$invalid && !pilot.firstName.$pristine"  class='error-message'>This field is required</p>
+                  <input required ng-model='data.last_name' type="text" class="modal-input" name="lastName" placeholder="Last Name">
+                  <p ng-show="pilot.lastName.$invalid && !pilot.lastName.$pristine"  class='error-message'>This field is required</p>
+                  <input required ng-model='data.email' type="email" class="modal-input" name="email" placeholder="sample@email.com">
+                  <p ng-show="pilot.email.$invalid && !pilot.email.$pristine"  class='error-message'>The email entered is not valid</p>
+                  <input required ng-model='data.department' type="text" class="modal-input" name="department" placeholder="Department">
+                  <p ng-show="pilot.department.$invalid && !pilot.department.$pristine"  class='error-message'>This field is required</p>
+                  <input required ng-model='data.departmentSize' type="number" class="modal-input" name="departmentSize" placeholder="Department Size" min='0'>
+                  <p ng-show="pilot.departmentSize.$invalid && !pilot.departmentSize.$pristine"  class='error-message'>A valid number is required</p>
 
                   <label>
                       <input ng-model='data.hasData' type="checkbox" class="modal-input" name="hasData" placeholder="Department">
                       Do you have any existing hydrant or building databases?
                   </label>
-                  <input ng-model='data.cadSoftware' type="text" class="modal-input" name="cadSoftware" placeholder="Which CAD software do you use?">
+                  <input required ng-model='data.cadSoftware' type="text" class="modal-input" name="cadSoftware" placeholder="Which CAD software do you use?">
+                  <p ng-show="pilot.cadSoftware.$invalid && !pilot.cadSoftware.$pristine"  class='error-message'>This field is required</p>
 
                   <label>
                       <input ng-model='data.cadMessaging' type="checkbox" class="modal-input" name="cadMessaging" placeholder="Department">

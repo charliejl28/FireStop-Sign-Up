@@ -69,9 +69,18 @@
     width: 250px;
     font-size: 0.75em;
 }
+.overlay .error-message {
+    font-size: 0.65em;
+    color: #762521;
+    margin: 0 0 0.5em;
+    padding: 0;
+}
 .overlay label input {
     width: auto;
     float: left;
+}
+.overlay .ng-dirty.ng-invalid {
+    border-color: #762521;
 }
 .overlay button.close-modal {
     padding: 0 20px 0 0;
